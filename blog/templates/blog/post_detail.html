@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Boys blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+{% block content %}
+<div  class="post">
+   {% if post.published_date %}
+    <div class=date">
+        {{ post.published_date }}
+    </div>
+    {% endif %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
+<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+{% endblock %}
+</body>
+
+</html>
